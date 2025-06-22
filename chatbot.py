@@ -1,6 +1,6 @@
 import streamlit as st
 import groq
-MODELOS = ['llama3-8b-8192', 'llama3-70b-8192','mixtral-8x7b-32768']
+MODELOS = ['llama3-8b-8192', 'llama3-70b-8192','llama-3.3-70b-versatile']
 
 def configurar_pagina():
    st.set_page_config(page_title="BetoGPT", page_icon="🤖",)
@@ -12,7 +12,7 @@ def configurar_pagina():
 
 
 def mostrar_sidebar():
-    st.sidebar.title("Elegir un modelo de IA")
+    st.sidebar.title("Elegi un modelo de IA")
     modelo = st.sidebar.selectbox("¿cual elejis ? ", MODELOS, index =0)
     st.write("Has elegido el modelo:", {modelo})
     return modelo
