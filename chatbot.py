@@ -39,6 +39,35 @@ def mostrar_historial_chat():
             st.markdown(mensaje["content"])
            
 
+import datetime
+
+if "historial_conversaciones" not in st.session_state:
+    st.session_state.historial_conversaciones = {}
+
+if "mensajes" not in st.session_state:
+    st.session_state.mensajes = []
+
+
+if st.button("💾 Guardar conversación"):
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    st.session_state.historial_conversaciones[timestamp] = st.session_state.mensajes.copy()
+    st.success("¡Conversación guardada!")
+
+
+st.sidebar.title("📜 Historial de chats")
+
+conversaciones = list(st.session_state.historial_conversaciones.keys())
+
+if conversaciones:
+    seleccion = st.sidebar.selectbox("Elegí una conversación:", conversaciones)
+
+    if st.sidebar.button("🔍 Ver conversación seleccionada"):
+        st.session_state.mensajes = st.session_state.historial_conversaciones[seleccion]
+        st.success(f"Mostrando chat del: {seleccion}")
+else:
+    st.sidebar.info("No hay conversaciones guardadas.")
+
+
 
 def obtener_mensaje_usuario():
     return st.chat_input("Escribe tu mensaje aquí:")
