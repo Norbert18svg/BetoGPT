@@ -116,13 +116,14 @@ def ejecutar_app():
         mensaje_modelo = obtener_respuesta_modelo(cliente, modelo, st.session_state.mensajes)
         agregar_mensaje_al_historial("assistant", mensaje_modelo)
         mostrar_mensaje("assistant", mensaje_modelo)
-
+        st.session_state.mensajes.append({"role": "assistant", "content": mensaje_modelo})
 
 
 
 if __name__ == "__main__":
     ejecutar_app()
   
+
 
 
 
