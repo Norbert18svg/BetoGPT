@@ -1,12 +1,13 @@
+
 import streamlit as st
 import groq
 MODELOS = ['llama3-8b-8192', 'llama3-70b-8192','llama-3.3-70b-versatile']
 
+
+
 def configurar_pagina():
    st.set_page_config(page_title="BetoGPT", page_icon="🤖",)
    st.markdown("""<h1 style="background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 60px; font-family: arial, sans-serif;">BetoGPT</h1>""", unsafe_allow_html=True)
-
-
 
 
 
@@ -109,6 +110,7 @@ def ejecutar_app():
     mensaje_usuario = obtener_mensaje_usuario()
 
 
+
     if mensaje_usuario:
         agregar_mensaje_al_historial("user", mensaje_usuario)
         mostrar_mensaje_usuario("user", mensaje_usuario)
@@ -119,11 +121,9 @@ def ejecutar_app():
         st.session_state.mensajes.append({"role": "assistant", "content": mensaje_modelo})
 
 
-
 if __name__ == "__main__":
     ejecutar_app()
   
-
 
 
 
